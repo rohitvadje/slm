@@ -112,16 +112,43 @@ function welcome(){
 *   In order to send that status to users, this function checks initial status of Environments for first time
 */
 function firstCheck(){
-     request(dev1_url, function (error) {
-                if(error){
-                   status_new.result[1].status = 0;                    
-                    //console.log('DEV1 error');
-                }
-                else{
-                   status_new.result[1].status = 1;
-                    //console.log('DEV1 success');
-                }
-            }).setMaxListeners(0);       
+	request(dev_url, function (error) {
+		if(error)
+			console.log('First check : dev down');                                            
+	}).setMaxListeners(0);       
+	request(dev1_url, function (error) {
+		if(error)
+			console.log('First check : dev 1 down');                                            
+	}).setMaxListeners(0);       
+	request(stage_url, function (error) {
+		if(error)
+			console.log('First check : stage down');                                            
+	}).setMaxListeners(0); 
+	request(stage1_url, function (error) {
+		if(error)
+			console.log('First check : stage 1 down');                                            
+	}).setMaxListeners(0); 
+	request(lt_url, function (error) {
+		if(error)
+			console.log('First check : lt down');                                            
+	}).setMaxListeners(0);
+	request(prod_url, function (error) {
+		if(error)
+			console.log('First check : prod down');                                            
+	}).setMaxListeners(0);     
+	request(jenkins_url, function (error) {
+		if(error)
+			console.log('First check : jenkins down');                                            
+	}).setMaxListeners(0);
+	request(rally_url, function (error) {
+		if(error)
+			console.log('First check : rally down');                                            
+	}).setMaxListeners(0);
+	request(bitbucket_url, function (error) {
+		if(error)
+			console.log('First check : bitbucket down');                                            
+	}).setMaxListeners(0);
+
 }
 
 
