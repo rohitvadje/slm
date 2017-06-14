@@ -103,6 +103,7 @@ var status_new = {
 *   Welcome 
 */
 function welcome(){
+	console.log('******************* Author : Rohit Vadje *********************\n\n');
     console.log('Welcome to Smart SLIM Environment Doctor');
 }
 
@@ -217,177 +218,117 @@ function notifyUser(env,state){
 *   Check status every loop_time seconds
 */
 function devStatus() {
-    setInterval(function(){
-            request(dev_url, function (error) {
-                if(error){
-                   status_new.result[0].status = 0;                    
-                    //console.log('DEV error');
-                }
-                else{
-                   status_new.result[0].status = 1;
-                    //console.log('DEV success');
-                }
-            }).setMaxListeners(0);       
-    }, loop_time);
+	setInterval(function(){
+		request(dev_url, function (error) {
+			if(error)
+				status_new.result[0].status = 0;                                                        
+			else
+				status_new.result[0].status = 1;                                 
+		}).setMaxListeners(0);       
+	}, loop_time);
 }
 
-
 function dev1Status() {
-    setInterval(function(){
-            request(dev1_url, function (error) {
-                if(error){
-                   status_new.result[1].status = 0;                    
-                    //console.log('DEV1 error');
-                }
-                else{
-                   status_new.result[1].status = 1;
-                    //console.log('DEV1 success');
-                }
-            }).setMaxListeners(0);       
-    }, loop_time);
+	setInterval(function(){
+		request(dev1_url, function (error) {
+			if(error)
+				status_new.result[1].status = 0;                                   
+			else
+				status_new.result[1].status = 1;                                   
+		}).setMaxListeners(0);       
+	}, loop_time);
 }
 
 function stageStatus() {
-    setInterval(function(){
-            request(stage_url, function (error) {
-                if(error){
-                   status_new.result[2].status = 0;                    
-                    //console.log('STAGE error');
-                }
-                else{
-                   status_new.result[2].status = 1;
-                    //console.log('STAGE success');
-                }
-            }).setMaxListeners(0);        
-    }, loop_time);
+	setInterval(function(){
+		request(stage_url, function (error) {
+			if(error)
+				status_new.result[2].status = 0;                                                       
+			else
+				status_new.result[2].status = 1;                                    
+		}).setMaxListeners(0);        
+	}, loop_time);
 }
 
 function stage1Status() {
-    setInterval(function(){
-            request(stage1_url, function (error) {
-                if(error){
-                   status_new.result[3].status = 0;                    
-                    //console.log('STAGE 1 error');
-                }
-                else{
-                   status_new.result[3].status = 1;
-                    //console.log('STAGE 1 success');
-                }
-            }).setMaxListeners(0);        
-    }, loop_time);
+	setInterval(function(){
+		request(stage1_url, function (error) {
+			if(error)
+				status_new.result[3].status = 0;                                                        
+			else
+				status_new.result[3].status = 1;                                   
+		}).setMaxListeners(0);        
+	}, loop_time);
 }
 
-
 function ltStatus() {
-    setInterval(function(){
-            request(lt_url, function (error) {
-                if(error){
-                   status_new.result[4].status = 0;                    
-                    //console.log('LT error');
-                }
-                else{
-                   status_new.result[4].status = 1;
-                    //console.log('LT success');
-                }
-            }).setMaxListeners(0);        
-    }, loop_time);
+	setInterval(function(){
+		request(lt_url, function (error) {
+			if(error)
+				status_new.result[4].status = 0;                                                    
+			else
+				status_new.result[4].status = 1;              
+		}).setMaxListeners(0);        
+	}, loop_time);
 }
 
 function prodStatus() {
-    setInterval(function(){
-            request(prod_url, function (error) {
-                if(error){
-                   status_new.result[5].status = 0;                    
-                    //console.log('PROD error');
-                }
-                else{
-                   status_new.result[5].status = 1;
-                    //console.log('PROD success');
-                }
-            }).setMaxListeners(0);        
-    }, loop_time);
+	setInterval(function(){
+		request(prod_url, function (error) {
+			if(error)
+				status_new.result[5].status = 0;                                                       
+			else
+				status_new.result[5].status = 1; 
+		}).setMaxListeners(0);        
+	}, loop_time);
 }
 
 function jenkinsStatus() {
-    setInterval(function(){
-            request(jenkins_url, function (error) {
-                if(error){
-                   status_new.result[6].status = 0;                    
-                    //console.log('JENKINS error');
-                }
-                else{
-                   status_new.result[6].status = 1;
-                    //console.log('JENKINS success');
-                }
-            }).setMaxListeners(0);        
-    }, loop_time);
+	setInterval(function(){
+		request(jenkins_url, function (error) {
+			if(error)
+				status_new.result[6].status = 0;                    
+			else
+				status_new.result[6].status = 1;
+		}).setMaxListeners(0);        
+	}, loop_time);
 }
 
 function rallyStatus() {
-    setInterval(function(){
-            request(rally_url, function (error) {
-                if(error){
-                   status_new.result[7].status = 0;                    
-                    //console.log('RALLY error');
-                }
-                else{
-                   status_new.result[7].status = 1;
-                    //console.log('RALLY success');
-                }
-            }).setMaxListeners(0);        
-    }, loop_time);
+	setInterval(function(){
+		request(rally_url, function (error) {
+			if(error)
+				status_new.result[7].status = 0;                      
+			else
+				status_new.result[7].status = 1;    
+		}).setMaxListeners(0);        
+	}, loop_time);
 }
 
 function bitbucketStatus() {
-    setInterval(function(){
-            request(bitbucket_url, function (error) {
-                if(error){
-                   status_new.result[8].status = 0;                    
-                    //console.log('BITBUCKET error');
-                }
-                else{
-                   status_new.result[8].status = 1;
-                    //console.log('BITBUCKET success');
-                }
-            }).setMaxListeners(0);        
-    }, loop_time);
+	setInterval(function(){
+		request(bitbucket_url, function (error) {
+			if(error)
+				status_new.result[8].status = 0;                                                   
+			else
+				status_new.result[8].status = 1;                                
+		}).setMaxListeners(0);        
+	}, loop_time);
 }
-
-/*
-var serviceAccount = require("serviceAccountKey.json");
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://slim-bookmarks.firebaseio.com"
-});*/
 
 app.use(express.static('public'))
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/public/index.html'));
-});
-       
-app.get('/pingWebSite',function(req,res){
-	
-/*    request(req.query.urlToGo, function (error) {
-	if(error){
-		res.send(false);
-		console.log(req.query.res+' down !');
-	}
-	else{
-		res.send(true);
-	}
-	}).setMaxListeners(0);*/    
-     res.writeHead(200, {"Content-Type": "application/json"});
-     var json = JSON.stringify(status_new);
-     res.end(json);
-});
+	res.sendFile(path.join(__dirname + '/public/index.html'));
+})
 
-app.get('/pingTarget',function(req,res){
-    console.log(req.query.urlList.toString());
-});
+app.get('/pingWebSite',function(req,res){ 
+	res.writeHead(200, {"Content-Type": "application/json"});
+	var json = JSON.stringify(status_new);
+	res.end(json);
+})
 
-	app.listen(3002, function () {
-	  console.log('Example app listening on port 3002!')
-	})
+app.listen(3002, function () {
+	console.log('Example app listening on port 3002!')
+})
 
