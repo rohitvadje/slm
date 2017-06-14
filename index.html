@@ -2,7 +2,13 @@
 <html ng-app="myApp">
 
 <head>
-	<title>SLIM Bookmarks</title>
+	
+	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	
+  	<title>SLIM Bookmarks</title>
+  	
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
 	<script src="js/lib/angular.min.js"></script>
 	<script src="js/lib/jquery.min.js"></script>
@@ -13,6 +19,10 @@
 	<link rel="stylesheet" href="css/div_top_spacing.css">
 	<link rel="stylesheet" href="css/toastr.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+     <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body  ng-controller="myCtrl" ng-init="repeatCall()">
@@ -21,7 +31,7 @@
 
 		<div class="well well-sm header">
 			<h1>Service Lifecycle Information Manager</h1>
-			<button disabled>Enable Push Messaging</button>
+			<button  class="js-push-btn" disabled>Enable Push Messaging</button>
 		</div>
 
 		<div class="row top-buffertop-buffer">
