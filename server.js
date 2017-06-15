@@ -113,9 +113,27 @@ function welcome(){
 *   In order to send that status to users, this function checks initial status of Environments for first time
 */
 function firstCheck(){
-	
+	setTimeout(function(){ 
+		if(status_old.result[0].status!=status_new.result[0].status) //DEV
+			notifyUser('DEV','DOWN');         
+		if(status_old.result[1].status!=status_new.result[1].status) //DEV 1
+			notifyUser('DEV 1','DOWN');        
+		if(status_old.result[2].status!=status_new.result[2].status) //STAGE
+			notifyUser('STAGE','DOWN');    
+		if(status_old.result[3].status!=status_new.result[3].status) //STAGE1
+			notifyUser('STAGE 1','DOWN');     
+		if(status_old.result[4].status!=status_new.result[4].status) //LT
+			notifyUser('LT','DOWN');
+		if(status_old.result[5].status!=status_new.result[5].status) //PROD
+			notifyUser('PROD','DOWN');
+		if(status_old.result[6].status!=status_new.result[6].status) //JENKINS
+			notifyUser('JENKINS','DOWN');
+		if(status_old.result[7].status!=status_new.result[7].status) //RALLY
+			notifyUser('RALLY','DOWN');
+		if(status_old.result[8].status!=status_new.result[8].status) //BITBUCKET
+			notifyUser('BITBUCKET','DOWN');    
+	}, 6000);
 }
-
 
 /**
 *   Init method
