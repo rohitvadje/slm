@@ -14,7 +14,7 @@ var jenkins_url = 'https://ci1.cisco.com/login?from=%2F';
 var rally_url = 'https://sso.cisco.com/autho/forms/mCDClogin.html';
 var bitbucket_url = 'https://gitscm.cisco.com/login';
 
-var loop_time = 3000;
+var loop_time = 5000;
 
 var d = new Date();
 
@@ -114,25 +114,28 @@ function welcome(){
 */
 function firstCheck(){
 	setTimeout(function(){ 
-		if(status_old.result[0].status!=status_new.result[0].status) //DEV
-			console.log('Dev down');        
-		if(status_old.result[1].status!=status_new.result[1].status) //DEV 1
-			console.log('Dev 1 down');
-		if(status_old.result[2].status!=status_new.result[2].status) //STAGE
-			console.log('STAGE down');  
-		if(status_old.result[3].status!=status_new.result[3].status) //STAGE1
-			console.log('STAGE1 down');     
-		if(status_old.result[4].status!=status_new.result[4].status) //LT
-			console.log('LT down');
-		if(status_old.result[5].status!=status_new.result[5].status) //PROD
-			console.log('PROD down');
-		if(status_old.result[6].status!=status_new.result[6].status) //JENKINS
-			console.log('JENKINS down');
-		if(status_old.result[7].status!=status_new.result[7].status) //RALLY
-			console.log('RALLY down');
-		if(status_old.result[8].status!=status_new.result[8].status) //BITBUCKET
-			console.log('BITBUCKET down');    
-	}, 6000);
+		console.log('[Info] First check started');
+		if(status_new.result[0].status==0) //DEV
+			console.log('	+ Dev down');        
+		if(status_new.result[1].status==0) //DEV 1
+			console.log('	+ Dev 1 down');
+		if(status_new.result[2].status==0) //STAGE
+			console.log('	+ STAGE down');  
+		if(status_new.result[3].status==0) //STAGE1
+			console.log('	+ STAGE1 down');     
+		if(status_new.result[4].status==0) //LT
+			console.log('	+ LT down');
+		if(status_new.result[5].status==0) //PROD
+			console.log('	+ PROD down');
+		if(status_new.result[6].status==0) //JENKINS
+			console.log('	+ JENKINS down');
+		if(status_new.result[7].status==0) //RALLY
+			console.log('	+ RALLY down');
+		if(status_new.result[8].status==0) //BITBUCKET
+			console.log('	+ BITBUCKET down');
+		
+		console.log('[Info] First check finished. Client will get notified onwards.');
+	}, 10000);	
 }
 
 /**
@@ -159,39 +162,66 @@ init();
 *   Notification Control
 */
 function notificationControl(){
-     setInterval(function(){
-         if(JSON.stringify(status_old) != JSON.stringify(status_new)){
-             if(status_old.result[0].status!=status_new.result[0].status){ //DEV
-                notifyUser('DEV','DOWN');
-             }
-             if(status_old.result[1].status!=status_new.result[1].status){ //DEV 1
-                notifyUser('DEV 1','DOWN');
-             }
-             if(status_old.result[2].status!=status_new.result[2].status){ //STAGE
-                notifyUser('STAGE','DOWN');
-             }
-              if(status_old.result[3].status!=status_new.result[3].status){ //STAGE1
-                notifyUser('STAGE 1','DOWN');
-             }
-             if(status_old.result[4].status!=status_new.result[4].status){ //LT
-                notifyUser('LT','DOWN');
-             }
-             if(status_old.result[5].status!=status_new.result[5].status){ //PROD
-                notifyUser('PROD','DOWN');
-             }
-             if(status_old.result[6].status!=status_new.result[6].status){ //JENKINS
-                notifyUser('JENKINS','DOWN');
-             }
-             if(status_old.result[7].status!=status_new.result[7].status){ //RALLY
-                notifyUser('RALLY','DOWN');
-             }
-             if(status_old.result[8].status!=status_new.result[8].status){ //BITBUCKET
-                notifyUser('BITBUCKET','DOWN');
-             }                          
-         }
-        
-         status_old.result = status_new.result; 
-     },5000);
+	console.log('[Info] Notifications started');
+	setInterval(function(){
+		if(JSON.stringify(status_old) != JSON.stringify(status_new)){
+			if(status_old.result[0].status!=status_new.result[0].status){ //DEV
+				if(status_new.result[0].status==1)
+					notifyUser('DEV','UP');
+				else if(status_new.result[0].status==0)
+					notifyUser('DEV','DOWN');
+			}
+			if(status_old.result[1].status!=status_new.result[1].status){ //DEV 1
+				if(status_new.result[1].status==1)
+					notifyUser('DEV 1','UP');
+				else if(status_new.result[1].status==0)
+					notifyUser('DEV 1','DOWN');
+			}
+			if(status_old.result[2].status!=status_new.result[2].status){ //STAGE
+				if(status_new.result[2].status==1)
+					notifyUser('STAGE','UP');
+				else if(status_new.result[2].status==0)
+					notifyUser('STAGE','DOWN');
+			}
+			if(status_old.result[3].status!=status_new.result[3].status){ //STAGE1
+				if(status_new.result[3].status==1)
+					notifyUser('STAGE 1','UP');
+				else if(status_new.result[3].status==0)
+					notifyUser('STAGE 1','DOWN');
+			}
+			if(status_old.result[4].status!=status_new.result[4].status){ //LT
+				if(status_new.result[4].status==1)
+					notifyUser('LT','UP');
+				else if(status_new.result[4].status==0)
+					notifyUser('LT','DOWN');
+			}
+			if(status_old.result[5].status!=status_new.result[5].status){ //PROD
+				if(status_new.result[5].status==1)
+					notifyUser('PROD','UP');
+				else if(status_new.result[5].status==0)
+					notifyUser('PROD','DOWN');
+			}
+			if(status_old.result[6].status!=status_new.result[6].status){ //JENKINS
+				if(status_new.result[6].status==1)
+					notifyUser('JENKINS','UP');
+				else if(status_new.result[6].status==0)
+					notifyUser('JENKINS','DOWN');
+			}
+			if(status_old.result[7].status!=status_new.result[7].status){ //RALLY
+				if(status_new.result[7].status==1)
+					notifyUser('RALLY','UP');
+				else if(status_new.result[7].status==0)
+					notifyUser('RALLY','DOWN');
+			}
+			if(status_old.result[8].status!=status_new.result[8].status){ //BITBUCKET
+				if(status_new.result[8].status==1)
+					notifyUser('BITBUCKET','UP');
+				else if(status_new.result[8].status==1)
+					notifyUser('BITBUCKET','DOWN');
+			}                          
+		}
+		status_old.result = status_new.result; 
+	},5000);
 }
 
 function notifyUser(env,state){
@@ -313,6 +343,6 @@ app.get('/pingWebSite',function(req,res){
 })
 
 app.listen(3002, function () {
-	console.log('Example app listening on port 3002!')
+	console.log('[Info] Server listening to URL --> https://localhost:3002/')
 })
 
