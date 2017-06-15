@@ -22,39 +22,48 @@ var status_old = {
     result : [
         {
             url : 'DEV',
-            status : 0
+            status : 0,
+            image : 'dev_image_src'
         },
         {
             url : 'DEV1',
-            status : 0
+            status : 0,
+            image : 'dev1_image_src'
         },
         {
             url : 'STAGE',
-            status : 0
+            status : 0,
+            image : 'stage_image_src'
         },
         {
             url : 'STAGE1',
-            status : 0
+            status : 0,
+            image : 'stage1_image_src'
         },
         {
             url : 'LT',
-            status : 0
+            status : 0,
+            image : ''
         },
         {
             url : 'PROD',
-            status : 0
+            status : 0,
+            image : 'prod_image_src'
         },
         {
             url : 'JENKINS',
-            status : 0
+            status : 0,
+            image : ''
         },
         {
             url : 'RALLY',
-            status : 0
+            status : 0,
+            image : ''
         },
         {
             url : 'BITBUCKET',
-            status : 0
+            status : 0,
+            image : ''
         }        
     ]
 };
@@ -62,19 +71,23 @@ var status_new = {
      result : [
         {
             url : 'DEV',
-            status : 0
+            status : 0,
+            image : 'dev_image_src'
         },
         {
             url : 'DEV1',
-            status : 0
+            status : 0,
+            image : 'dev1_image_src'
         },
         {
             url : 'STAGE',
-            status : 0
+            status : 0,
+            image : 'stage_image_src'
         },
         {
             url : 'STAGE1',
-            status : 0
+            status : 0,
+            image : 'stage1_image_src'
         },
         {
             url : 'LT',
@@ -82,7 +95,8 @@ var status_new = {
         },
         {
             url : 'PROD',
-            status : 0
+            status : 0,
+            image : 'prod_image_src'
         },
         {
             url : 'JENKINS',
@@ -116,23 +130,23 @@ function firstCheck(){
 	setTimeout(function(){ 
 		console.log('[Info] First check started');
 		if(status_new.result[0].status==0) //DEV
-			console.log('	+ Dev down');        
+			console.error('	+ Dev down');        
 		if(status_new.result[1].status==0) //DEV 1
-			console.log('	+ Dev 1 down');
+			console.error('	+ Dev 1 down');
 		if(status_new.result[2].status==0) //STAGE
-			console.log('	+ STAGE down');  
+			console.error('	+ STAGE down');  
 		if(status_new.result[3].status==0) //STAGE1
-			console.log('	+ STAGE1 down');     
+			console.error('	+ STAGE1 down');     
 		if(status_new.result[4].status==0) //LT
-			console.log('	+ LT down');
+			console.error('	+ LT down');
 		if(status_new.result[5].status==0) //PROD
-			console.log('	+ PROD down');
+			console.error('	+ PROD down');
 		if(status_new.result[6].status==0) //JENKINS
-			console.log('	+ JENKINS down');
+			console.error('	+ JENKINS down');
 		if(status_new.result[7].status==0) //RALLY
-			console.log('	+ RALLY down');
+			console.error('	+ RALLY down');
 		if(status_new.result[8].status==0) //BITBUCKET
-			console.log('	+ BITBUCKET down');
+			console.error('	+ BITBUCKET down');
 		
 		console.log('[Info] First check finished. Client will get notified onwards.');
 	}, 10000);	
@@ -225,7 +239,9 @@ function notificationControl(){
 }
 
 function notifyUser(env,state){
-    console.log(env+' is '+state);
+	var date = new Date();
+	var dateTime = date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear()+'   '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
+	console.log(env+' is '+state + 'at	'+dateTime);
 }
 
 /**
@@ -334,15 +350,15 @@ app.use(express.static('public'))
 
 app.get('/', function(req, res) {
 	res.sendFile(path.join(__dirname + '/public/index.html'));
-})
+});
 
-app.get('/pingWebSite',function(req,res){ 
+app.get('/getstatus',function(req,res){ 
 	res.writeHead(200, {"Content-Type": "application/json"});
 	var json = JSON.stringify(status_new);
 	res.end(json);
-})
+});
 
 app.listen(3002, function () {
-	console.log('[Info] Server listening to URL --> https://localhost:3002/')
-})
+	console.log('[Info] Server listening to URL --> http://localhost:3002/')
+});
 
