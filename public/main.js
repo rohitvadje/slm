@@ -60,6 +60,12 @@ function subscribeUser() {
 }
 
 function updateBtn() {
+	if (Notification.permission === 'denied') {
+		pushButton.textContent = 'Push Messaging Blocked.';
+		pushButton.disabled = true;
+		updateSubscriptionOnServer(null);
+		return;
+	}
 	if (isSubscribed) {
 		pushButton.textContent = 'Disable Push Messaging';
 	} else {
@@ -67,6 +73,21 @@ function updateBtn() {
 	}
 
 	pushButton.disabled = false;
+}
+
+function updateSubscriptionOnServer(subscription) {
+	// TODO: Send subscription to application server
+
+	const subscriptionJson = document.querySelector('.js-subscription-json');
+	const subscriptionDetails =
+		document.querySelector('.js-subscription-details');
+
+	if (subscription) {
+		subscriptionJson.textContent = JSON.stringify(subscription);
+		subscriptionDetails.classList.remove('is-invisible');
+	} else {
+		subscriptionDetails.classList.add('is-invisible');
+	}
 }
 
 navigator.serviceWorker.register('sw.js')
