@@ -47,8 +47,8 @@ app.controller('mainCtrl', function($scope, $http) {
 				var date = new Date();
 				var dateTime = date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear()+'   '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
 				//console.log('Server is not reachable');
-			}, 5000);
-		});
+			});
+		},5000);
 	};
 	$scope.status();
 });
