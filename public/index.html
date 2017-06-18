@@ -1,5 +1,5 @@
 
-<html ng-app="myApp">
+<html ng-app="slmApp">
 
 <head>
 	
@@ -21,20 +21,23 @@
 	<script src="js/lib/angular.min.js"></script>
 	<script src="js/lib/jquery.min.js"></script>
 	<script src="js/lib/toastr.min.js"></script>
-	<script src="js/controllers/myctrl.js"></script>
+	<script src="js/controllers/mainController.js"></script>
 	<script src="js/lib/bootstrap.min.js"></script>
 	<script src="js/lib/lodash.min.js"></script>
-	<script defer src="js/lib/material.min.js"></script>
+	<!-- <script defer src="js/lib/material.min.js"></script> -->
+	<script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+	<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+	<script src="main.js"></script>
 	    
 </head>
 
-<body  ng-controller="myCtrl" ng-init="repeatCall()">
+<body  ng-controller="mainCtrl">
 	
 	<div class="container" style="text-align: center">
 
 		<div class="well well-sm header">
 			<h1>Service Lifecycle Information Manager</h1>
-			<button  class="js-push-btn" disabled>Enable Push Messaging</button>
+			<button  class="js-push-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" disabled>Enable Push Messaging</button>
 		</div>
 
 		<div class="row top-buffertop-buffer">
