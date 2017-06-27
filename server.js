@@ -10,7 +10,7 @@ var stage_url = 'https://slimcs-stage.cloudapps.cisco.com/slim/';
 var stage1_url = 'https://slimcs1-stage.cloudapps.cisco.com/slim/';
 var lt_url = 'https://slimcs-lt.cloudapps.cisco.com/slim/';
 var prod_url = 'https://sso.cisco.com/autho/forms/CECLogin.html';
-var jenkins_url = 'https://ci1.cisco.com/login?from=%2F';
+var jenkins_url = 'https://ci1.cisco.com/';
 var rally_url = 'https://sso.cisco.com/autho/forms/mCDClogin.html';
 var bitbucket_url = 'https://gitscm.cisco.com/login';
 
