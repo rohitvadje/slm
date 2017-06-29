@@ -1,3 +1,24 @@
+/*
+*
+*  Push Notifications codelab
+*  Copyright 2015 Google Inc. All rights reserved.
+*
+*  Licensed under the Apache License, Version 2.0 (the "License");
+*  you may not use this file except in compliance with the License.
+*  You may obtain a copy of the License at
+*
+*      https://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing, software
+*  distributed under the License is distributed on an "AS IS" BASIS,
+*  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*  See the License for the specific language governing permissions and
+*  limitations under the License
+*
+*/
+
+/* eslint-env browser, es6 */
+
 'use strict';
 
 const applicationServerPublicKey = 'BCEMQDZtHqrZcN6RmgWnjSPG2-GLAMHNIog4P9f2ul4Js8DnNaRmeFgYendIWbCTe10leHR4SsaeqfejJndFFW4';
@@ -6,6 +27,12 @@ const pushButton = document.querySelector('.js-push-btn');
 
 let isSubscribed = false;
 let swRegistration = null;
+toastr.options = {
+		tapToDismiss : true,
+		debug : false,
+		fadeOut: 10,
+		positionClass : "toast-top-center"
+		};
 
 function urlB64ToUint8Array(base64String) {
   const padding = '='.repeat((4 - base64String.length % 4) % 4);
@@ -56,6 +83,7 @@ function initialiseUI() {
 
     if (isSubscribed) {
       console.log('User IS subscribed.');
+      toastr.success("You are registered to push notifications");
     } else {
       console.log('User is NOT subscribed.');
     }

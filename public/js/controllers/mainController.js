@@ -1,5 +1,6 @@
 var app = angular.module('slmApp', []);
 app.controller('mainCtrl', function($scope, $http) { 
+	
 	$scope.liveImg = 'Green.png';
 	$scope.deadImg = 'Red.png';
 	$scope.status = function() {		
@@ -47,8 +48,15 @@ app.controller('mainCtrl', function($scope, $http) {
 				var date = new Date();
 				var dateTime = date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear()+'   '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
 				//console.log('Server is not reachable');
+				console.clear();
 			});
 		},5000);
 	};
 	$scope.status();
+	
+	$scope.confirmDisable = false;
+	$scope.disablePush = function(){
+		$scope.confirmDisable = true;
+	};
+	
 });

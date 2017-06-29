@@ -127,8 +127,8 @@ function welcome(){
 *   In order to send that status to users, this function checks initial status of Environments for first time
 */
 function firstCheck(){
-	setTimeout(function(){ 
-		console.log('[Info] First check started');
+	console.log('[Info] First check started');
+	setTimeout(function(){ 		
 		if(status_new.result[0].status==0) //DEV
 			console.error('	+ Dev down');        
 		if(status_new.result[1].status==0) //DEV 1
@@ -149,7 +149,7 @@ function firstCheck(){
 			console.error('	+ BITBUCKET down');
 		
 		console.log('[Info] First check finished. Client will get notified onwards.');
-	}, 10000);	
+	}, 15000);	
 }
 
 /**
