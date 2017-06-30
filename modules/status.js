@@ -43,19 +43,19 @@ exports.local = {
 	        },
 	        {
 	        	name : 'Jenkins',
-	        	url : urls.jenkins_url,
+	        	url : urls.jenkins_link,
 	        	status : 0,
 	        	image : 'jenkins_image_src'
 	        },
 	        {
 	        	name : 'Rally',
-	        	url : urls.rally_url,
+	        	url : urls.rally_link,
 	        	status : 0,
 	        	image : 'rally_image_src'
 	        },
 	        {
 	        	name : 'Bitbucket',
-	        	url : urls.bitbucket_url,
+	        	url : urls.bitbucket_link,
 	        	status : 0,
 	        	image : 'bitbucket_image_src'
 	        }        
