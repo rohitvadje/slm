@@ -2,11 +2,14 @@
  * Author : rohit.8859@gmail.com
  * Module : Check status of target
  */
+
+/*
+ * Variables
+ */
 var request = require('../node_modules/request');
 var target_url = require('./target_urls');
 var status = require('./status');
 var notification = require('./notifications');
-var loop_time = 5000;
 
 let lastDevState = '';
 let lastDev1State = '';
@@ -18,21 +21,14 @@ let lastJenkinsState = '';
 let lastRallyState = '';
 let lastBitbucketState = '';
 
-devStatus();
-dev1Status();
-stageStatus();
-stage1Status();
-ltStatus();
-prodStatus();
-jenkinsStatus();
-rallyStatus();
-bitbucketStatus();
-
+/*
+ * Functions to keep watch on state
+ */
 function checkState(target,newState) {
 	switch (target) {
 	case 'Dev':
 		if(newState!== lastDevState){
-			if(newStatus == 'Connected'){
+			if(newState == 'Connected'){
 				status.local.data[0].status=1;
 			}
 			else{
@@ -44,7 +40,7 @@ function checkState(target,newState) {
 		break;
 	case 'Dev1':
 		if(newState!== lastDev1State){
-			if(newStatus == 'Connected'){
+			if(newState == 'Connected'){
 				status.local.data[1].status=1;
 			}
 			else{
@@ -57,7 +53,7 @@ function checkState(target,newState) {
 		break;
 	case 'Stage':
 		if(newState!== lastStageState){
-			if(newStatus == 'Connected'){
+			if(newState == 'Connected'){
 				status.local.data[2].status=1;
 			}
 			else{
@@ -69,7 +65,7 @@ function checkState(target,newState) {
 		break;
 	case 'Stage1':
 		if(newState!== lastStage1State){
-			if(newStatus == 'Connected'){
+			if(newState == 'Connected'){
 				status.local.data[3].status=1;
 			}
 			else{
@@ -145,119 +141,175 @@ function checkState(target,newState) {
 	}
 }
 
-function devStatus() {
-	setInterval(function(){
-		request
-		.get(target_url.dev_link)
-		.on('response', function(response) {
-			checkState('Dev','Connected');
-		})
-		.on('error', function(err) {
-			checkState('Dev','Disconneted');
-		})
-	}, loop_time);
+var devStatusWatch = function devStatus() {
+	request
+	.get(target_url.dev_link)
+	.on('response', function(response) {
+		checkState('Dev','Connected');
+	})
+	.on('error', function(err) {
+		checkState('Dev','Disconneted');
+	})
 }
 
-function dev1Status() {
-	setInterval(function(){
-		request
-		.get(target_url.dev1_link)
-		.on('response', function(response) {
-			checkState('Dev1','Connected');
-		})
-		.on('error', function(err) {
-			checkState('Dev1','Disconneted');
-		})
-	}, loop_time);
+var dev1StatusWatch = function dev1Status() {
+	request
+	.get(target_url.dev1_link)
+	.on('response', function(response) {
+		checkState('Dev1','Connected');
+	})
+	.on('error', function(err) {
+		checkState('Dev1','Disconneted');
+	})
 }
 
-function stageStatus() {
-	setInterval(function(){
-		request
-		.get(target_url.stage_link)
-		.on('response', function(response) {
-			checkState('Stage','Connected');
-		})
-		.on('error', function(err) {
-			checkState('Stage','Disconneted');
-		})
-	}, loop_time);
+var stageStatusWatch = function stageStatus() {
+	request
+	.get(target_url.stage_link)
+	.on('response', function(response) {
+		checkState('Stage','Connected');
+	})
+	.on('error', function(err) {
+		checkState('Stage','Disconneted');
+	})
 }
 
-function stage1Status() {
-	setInterval(function(){
-		request
-		.get(target_url.stage1_link)
-		.on('response', function(response) {
-			checkState('Stage1','Connected');
-		})
-		.on('error', function(err) {
-			checkState('Stage1','Disconneted');
-		})
-	}, loop_time);
+var stage1StatusWatch = function stage1Status() {
+	request
+	.get(target_url.stage1_link)
+	.on('response', function(response) {
+		checkState('Stage1','Connected');
+	})
+	.on('error', function(err) {
+		checkState('Stage1','Disconneted');
+	})
 }
 
-function ltStatus() {
-	setInterval(function(){
-		request
-		.get(target_url.lt_link)
-		.on('response', function(response) {
-			checkState('Lt','Connected');
-		})
-		.on('error', function(err) {
-			checkState('Lt','Disconneted');
-		})
-	}, loop_time);
+var ltStatusWatch = function ltStatus() {
+	request
+	.get(target_url.lt_link)
+	.on('response', function(response) {
+		checkState('Lt','Connected');
+	})
+	.on('error', function(err) {
+		checkState('Lt','Disconneted');
+	})
 }
 
-function prodStatus() {
-	setInterval(function(){
-		request
-		.get(target_url.prod_link)
-		.on('response', function(response) {
-			checkState('Prod','Connected');
-		})
-		.on('error', function(err) {
-			checkState('Prod','Disconneted');
-		})
-	}, loop_time);
+var prodStatusWatch = function prodStatus() {
+	request
+	.get(target_url.prod_link)
+	.on('response', function(response) {
+		checkState('Prod','Connected');
+	})
+	.on('error', function(err) {
+		checkState('Prod','Disconneted');
+	})
 }
 
-function jenkinsStatus() {
-	setInterval(function(){
-		request
-		.get(target_url.jenkins_link)
-		.on('response', function(response) {
-			checkState('Jenkins','Connected');
-		})
-		.on('error', function(err) {
-			checkState('Jenkins','Disconneted');
-		})
-	}, loop_time);
+var jenkinsStatusWatch = function jenkinsStatus() {
+	request
+	.get(target_url.jenkins_link)
+	.on('response', function(response) {
+		checkState('Jenkins','Connected');
+	})
+	.on('error', function(err) {
+		checkState('Jenkins','Disconneted');
+	})
 }
 
-function rallyStatus() {
-	setInterval(function(){
-		request
-		.get(target_url.rally_link)
-		.on('response', function(response) {
-			checkState('Rally','Connected');
-		})
-		.on('error', function(err) {
-			checkState('Rally','Disconneted');
-		})
-	}, loop_time);
+var rallyStatusWatch = function rallyStatus() {
+	request
+	.get(target_url.rally_link)
+	.on('response', function(response) {
+		checkState('Rally','Connected');
+	})
+	.on('error', function(err) {
+		checkState('Rally','Disconneted');
+	})
 }
 
-function bitbucketStatus() {
-	setInterval(function(){
-		request
-		.get(target_url.bitbucket_link)
-		.on('response', function(response) {
-			checkState('Bitbucket','Connected');
-		})
-		.on('error', function(err) {
-			checkState('Bitbucket','Disconneted');
-		})
-	}, loop_time);
+var bitbucketStatusWatch = function bitbucketStatus() {
+	request
+	.get(target_url.bitbucket_link)
+	.on('response', function(response) {
+		checkState('Bitbucket','Connected');
+	})
+	.on('error', function(err) {
+		checkState('Bitbucket','Disconneted');
+	})
+}
+
+/*
+ * Turn on/off watch
+ */
+exports.turnOnWatch = function(){
+	var loop_time = 5000;
+	setInterval(function(){devStatusWatch()},loop_time);
+	setInterval(function(){dev1StatusWatch()},loop_time);
+	setInterval(function(){stageStatusWatch()},loop_time);
+	setInterval(function(){stage1StatusWatch()},loop_time);
+	setInterval(function(){ltStatusWatch()},loop_time);
+	setInterval(function(){prodStatusWatch()},loop_time);
+	setInterval(function(){jenkinsStatusWatch()},loop_time);
+	setInterval(function(){rallyStatusWatch()},loop_time);
+	setInterval(function(){bitbucketStatusWatch()},loop_time);
+}
+
+export.turnOffWatch = function(){
+	clearInterval(devStatusWatch);
+	clearInterval(dev1StatusWatch);
+	clearInterval(stageStatusWatch);
+	clearInterval(stage1StatusWatch);
+	clearInterval(ltStatusWatch);
+	clearInterval(prodStatusWatch);
+	clearInterval(jenkinsStatusWatch);
+	clearInterval(rallyStatusWatch);
+	clearInterval(bitbucketStatusWatch);
+}
+
+/*
+ * Check individual status
+ */
+
+exports.checkStatus = function(arg1){
+	var serviceAvialableFor = {'Dev','Dev1','Stage','Stage1','Lt','Prod','Jenkins','Rally','Bitbucket'};
+	var avialable = false;
+	for ( var service in serviceAvialableFor) {
+		if(arg1 == service)
+			avialable = true;
+	}
+	if(avialable = true){
+		switch (arg1) {
+		case 'Dev':
+			devStatusWatch();
+			break;
+		case 'Dev1':
+			dev1StatusWatch();
+			break;
+		case 'Stage':
+			stageStatusWatch();
+			break;
+		case 'Stage1':
+			stage1StatusWatch();
+			break;
+		case 'Lt':
+			ltStatusWatch();
+		case 'Prod':
+			prodStatusWatch();
+			break;
+		case 'Jenkins':
+			jenkinsStatusWatch();
+			break;
+		case 'Rally':
+			rallyStatusWatch();
+			break;
+		case 'Bitbucket':
+			bitbucketStatusWatch();
+			break;
+		default:
+			notification.consoleNotify('Wrong Argument !',null);
+		break;
+		}
+	}
 }
