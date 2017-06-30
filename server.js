@@ -33,14 +33,7 @@ app.get('/', function(req, res) {
 
 app.get('/getstatus',function(req,res){ 
 	res.writeHead(200, {"Content-Type": "application/json"});
-	var json = JSON.stringify(st.local);
-	res.end(json);
-});
-
-app.get('/test',function(req,res){
-	res.writeHead(200, {"Content-Type": "application/json"});
-	var json = JSON.stringify(st.local);
-	res.end(json);
+	res.end(JSON.stringify(st.local));
 });
 
 app.listen(3002, function () {
