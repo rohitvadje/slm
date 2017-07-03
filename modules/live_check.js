@@ -153,126 +153,144 @@ function checkState(target,newState) {
 
 var devStatusWatch = function devStatus() {
 	devStatusWatchAlive = true;
-	request
-	.get(target_url.dev_link)
-	.on('response', function(response) {
-		checkState('Dev','Connected');
-	})
-	.on('error', function(err) {
-		checkState('Dev','Disconneted');
-	})
+	request.get(target_url.dev_link)
+	.on('response', function(response) { return true;})
+	.on('error', function(err) { return false;})
 }
 
 var dev1StatusWatch = function dev1Status() {
 	dev1StatusWatchAlive = true;
-	request
-	.get(target_url.dev1_link)
-	.on('response', function(response) {
-		checkState('Dev1','Connected');
-	})
-	.on('error', function(err) {
-		checkState('Dev1','Disconneted');
-	})
+	request.get(target_url.dev1_link)
+	.on('response', function(response) { return true;})
+	.on('error', function(err) { return false;})
 }
 
 var stageStatusWatch = function stageStatus() {
 	stageStatusWatchAlive = true;
-	request
-	.get(target_url.stage_link)
-	.on('response', function(response) {
-		checkState('Stage','Connected');
-	})
-	.on('error', function(err) {
-		checkState('Stage','Disconneted');
-	})
+	request.get(target_url.stage_link)
+	.on('response', function(response) { return true;})
+	.on('error', function(err) { return false;})
 }
 
 var stage1StatusWatch = function stage1Status() {
 	stage1StatusWatchAlive = true;
-	request
-	.get(target_url.stage1_link)
-	.on('response', function(response) {
-		checkState('Stage1','Connected');
-	})
-	.on('error', function(err) {
-		checkState('Stage1','Disconneted');
-	})
+	request.get(target_url.stage1_link)
+	.on('response', function(response) { return true;})
+	.on('error', function(err) { return false;})
 }
 
 var ltStatusWatch = function ltStatus() {
 	ltStatusWatchAlive = true; 
-	request
-	.get(target_url.lt_link)
-	.on('response', function(response) {
-		checkState('Lt','Connected');
-	})
-	.on('error', function(err) {
-		checkState('Lt','Disconneted');
-	})
+	request.get(target_url.lt_link)
+	.on('response', function(response) { return true;})
+	.on('error', function(err) { return false;})
 }
 
 var prodStatusWatch = function prodStatus() {
 	prodStatusWatchAlive = true;
-	request
-	.get(target_url.prod_link)
-	.on('response', function(response) {
-		checkState('Prod','Connected');
-	})
-	.on('error', function(err) {
-		checkState('Prod','Disconneted');
-	})
+	request.get(target_url.prod_link)
+	.on('response', function(response) { return true;})
+	.on('error', function(err) { return false;})
 }
 
 var jenkinsStatusWatch = function jenkinsStatus() {
 	jenkinsStatusWatchAlive = true;
-	request
-	.get(target_url.jenkins_link)
-	.on('response', function(response) {
-		checkState('Jenkins','Connected');
-	})
-	.on('error', function(err) {
-		checkState('Jenkins','Disconneted');
-	})
+	request.get(target_url.jenkins_link)
+	.on('response', function(response) { return true;})
+	.on('error', function(err) { return false;})
 }
 
 var rallyStatusWatch = function rallyStatus() {
 	rallyStatusWatchAlive = true;
-	request
-	.get(target_url.rally_link)
-	.on('response', function(response) {
-		checkState('Rally','Connected');
-	})
-	.on('error', function(err) {
-		checkState('Rally','Disconneted');
-	})
+	request.get(target_url.rally_link)
+	.on('response', function(response) { return true;})
+	.on('error', function(err) { return false;})
 }
 
 var bitbucketStatusWatch = function bitbucketStatus() {
 	bitbucketStatusWatchAlive = true;
-	request
-	.get(target_url.bitbucket_link)
-	.on('response', function(response) {
-		checkState('Bitbucket','Connected');
-	})
-	.on('error', function(err) {
-		checkState('Bitbucket','Disconneted');
-	})
+	request.get(target_url.bitbucket_link)
+	.on('response', function(response) { return true;})
+	.on('error', function(err) { return false;})
 }
 
 /*
  * Turn on/off watch
  */
-exports.turnOnWatch = function(){
+exports.turnOnWatch = function(strict_mode){
 	var loop_time = 5000;
-	setInterval(function(){devStatusWatch()},loop_time);
-	setInterval(function(){dev1StatusWatch()},loop_time);
-	setInterval(function(){stageStatusWatch()},loop_time);
-	setInterval(function(){stage1StatusWatch()},loop_time);
-	setInterval(function(){ltStatusWatch()},loop_time);
-	setInterval(function(){prodStatusWatch()},loop_time);
-	setInterval(function(){jenkinsStatusWatch()},loop_time);
-	setInterval(function(){rallyStatusWatch()},loop_time);
-	setInterval(function(){bitbucketStatusWatch()},loop_time);
+
+	//Dev 
+	setInterval(function(){
+		if(devStatusWatch()==true){
+			if(strict_mode==true){
+				if(checkStatus('Dev')==true){
+					checkState('Dev','Connected');
+				}
+			}
+			else
+				checkState('Dev','Connected');
+		}
+		else{
+			if(strict_mode=true){
+				if(checkStatus('Dev')==true){
+					checkState('Dev','Disconneted');
+				}
+			}
+			else
+				checkState('Dev','Disconneted');
+		}
+	},loop_time);
+
+	//Dev1
+	setInterval(function(){
+		if(dev1StatusWatch()==true)
+			checkState('Dev1','Connected');
+		else
+			checkState('Dev1','Disconnected');
+	},loop_time);
+	setInterval(function(){
+		if(stageStatusWatch()==true)
+			checkState('Stage','Connected');
+		else
+			checkState('Stage','Disconneted');
+	},loop_time);
+	setInterval(function(){
+		if(stage1StatusWatch()==true)
+			checkState('Stage1','Connected');
+		else
+			checkState('Stage1','Disconneted');
+	},loop_time);
+	setInterval(function(){
+		if(ltStatusWatch()==true)
+			checkState('Lt','Connected');
+		else
+			checkState('Lt','Disconneted');
+	},loop_time);
+	setInterval(function(){
+		if(prodStatusWatch()==true)
+			checkState('Prod','Connected');
+		else
+			checkState('Prod','Disconneted');
+	},loop_time);
+	setInterval(function(){
+		if(jenkinsStatusWatch()==true)
+			checkState('Jenkins','Connected');
+		else
+			checkState('Jenkins','Disconneted');
+	},loop_time);
+	setInterval(function(){
+		if(rallyStatusWatch()==true)
+			checkState('Rally','Connected');
+		else
+			checkState('Rally','Disconneted');
+	},loop_time);
+	setInterval(function(){
+		if(bitbucketStatusWatch()==true)
+			checkState('Bitbucket','Connected');
+		else
+			checkState('Bitbucket','Disconneted');
+	},loop_time);
 }
 
 exports.turnOffWatch = function(){
@@ -299,7 +317,7 @@ exports.turnOffWatch = function(){
 /*
  * Check individual status of hosts
  */
-exports.checkStatus = function(arg1){
+exports.checkStatus = function checkStatus(arg1){
 	var serviceAvialableFor = {
 			server:'Dev',
 			server:'Dev1',
