@@ -14,7 +14,11 @@ slm.config(['$routeProvider', '$locationProvider', '$provide', function($routePr
     	templateUrl : '',
     	controller : ''
     })
-    .when('/passwordchange',{
+     .when('/password/create',{
+    	templateUrl : '',
+    	controller : ''
+    })
+    .when('/password/change',{
     	templateUrl : '',
     	controller : ''
     })
