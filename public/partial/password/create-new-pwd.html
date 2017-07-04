@@ -3,9 +3,8 @@
 		<table>
 			<tr>
 				<td>New Password</td>
-				<td>
-					<input type="password" class="form-control"	ng-model="newPassword" name="newPassword">
-				</td>
+				<td><input type="password" class="form-control"
+					ng-model="newPassword" name="newPassword"></td>
 				<td>
 					<div class="checkbox">
 						<label><input type="checkbox" value="">Show
@@ -15,11 +14,22 @@
 			</tr>
 			<tr>
 				<td>Confirm Password</td>
-				<td><input type="password" class="form-control"></td>
+				<td><input type="password" class="form-control"
+					ng-model="confirmPassword" name="confirmPassword"></td>
 			</tr>
 		</table>
+		<div>
+			<button type="button" class="btn btn-info" ng-click="">Submit</button>
+		</div>
 	</form>
-	<div class="alert alert-danger" ng-show="newPassword!==">
+	<div class="alert alert-danger" ng-show="newPassword!=confirmPassword">
 		<strong>Warning!</strong> Passwords strings are not matching
+	</div>
+	<div class="alert alert-danger"
+		ng-show="newPassword.$pristine || newPassword.$invalid || confirmPassword.$pristine || confirmPassword.$invalid">
+		<strong>Warning!</strong> Please fill the required field
+	</div>
+	<div class="alert alert-success" ng-show="newPassword==confirmPassword">
+		<strong>Info</strong> You are ready to submit new password
 	</div>
 </div>
