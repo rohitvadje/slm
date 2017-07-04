@@ -86,6 +86,7 @@ function initialiseUI() {
       toastr.success("You are registered to push notifications");
     } else {
       console.log('User is NOT subscribed.');
+      toastr.error("You are not registered to push notifications");
     }
 
     updateBtn();
@@ -130,17 +131,14 @@ function subscribeUser() {
   });
 }
 
+const subscriptionJson = document.querySelector('.js-subscription-json');
 function updateSubscriptionOnServer(subscription) {
   // TODO: Send subscription to application server
-
-  const subscriptionJson = document.querySelector('.js-subscription-json');
-  const subscriptionDetails =
-    document.querySelector('.js-subscription-details');
-
+  const subscriptionDetails = document.querySelector('.js-subscription-details');
   if (subscription) {
-    subscriptionJson.textContent = JSON.stringify(subscription);
-    subscriptionDetails.classList.remove('is-invisible');
+    //subscriptionJson.textContent = JSON.stringify(subscription);
+    //subscriptionDetails.classList.remove('is-invisible');
   } else {
-    subscriptionDetails.classList.add('is-invisible');
+    //subscriptionDetails.classList.add('is-invisible');
   }
 }

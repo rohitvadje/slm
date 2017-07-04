@@ -20,7 +20,7 @@ var loop_time = 5000;
 /*
  * Trigger watch
  */
-live.turnOnWatch(false); //parameter : strict watch 
+live.turnOnWatch(false); 
 
 /*
  * Routing
