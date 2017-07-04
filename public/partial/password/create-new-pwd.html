@@ -1,0 +1,25 @@
+<div class="form-group">
+	<form name="createNewPwd">
+		<table>
+			<tr>
+				<td>New Password</td>
+				<td>
+					<input type="password" class="form-control"	ng-model="newPassword" name="newPassword">
+				</td>
+				<td>
+					<div class="checkbox">
+						<label><input type="checkbox" value="">Show
+							password</label>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>Confirm Password</td>
+				<td><input type="password" class="form-control"></td>
+			</tr>
+		</table>
+	</form>
+	<div class="alert alert-danger" ng-show="newPassword!==">
+		<strong>Warning!</strong> Passwords strings are not matching
+	</div>
+</div>
